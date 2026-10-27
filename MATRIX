@@ -1,0 +1,84 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    int n, m;
+
+    cout << "Введіть рядки і стовбці: ";
+    cin >> n >> m;
+
+    if (n <= 0 || m <= 0)
+    {
+        cout << "рядки і стовбці повинні бути більші ніж 0!";
+        return 1;
+    }
+//створюється вектор
+    vector<vector<double>> a(n, vector<double>(m));
+
+    cout << "введіть елементи матриці:\n";
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            cin >> a[i][j];
+        }
+    }
+
+    cout << "\nВаша матриця:\n";
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            cout << a[i][j] << "\t";
+        }
+        cout << endl;
+    }
+
+    cout << "\nМінімум і максимум кожного рядка:\n";
+
+    for (int i = 0; i < n; i++)
+    {
+        double min = a[i][0];
+        double max = a[i][0];
+
+        for (int j = 1; j < m; j++)
+        {
+            if (a[i][j] < min)
+                min = a[i][j];
+
+            if (a[i][j] > max)
+                max = a[i][j];
+        }
+
+        cout << "рядок " << i + 1
+             << ": мінімум = " << min
+             << ", максимум = " << max << endl;
+    }
+
+    cout << "\nмінімум і максимум кожного стовбця:\n";
+
+    for (int j = 0; j < m; j++)
+    {
+        double min = a[0][j];
+        double max = a[0][j];
+
+        for (int i = 1; i < n; i++)
+        {
+            if (a[i][j] < min)
+                min = a[i][j];
+
+            if (a[i][j] > max)
+                max = a[i][j];
+        }
+
+        cout << "стовбець " << j + 1
+             << ": мінімум = " << min
+             << ", максимум = " << max << endl;
+    }
+
+    return 0;
+}
